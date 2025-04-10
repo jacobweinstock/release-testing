@@ -15,8 +15,11 @@ jobs:
       matrix:
         include:
           - name: tinkerbell
+            tag: type=sha,prefix=
           - name: tink-agent
+            tag: type=sha,prefix=
           - name: charts/tinkerbell
+            tag: type=semver,pattern=v{{version}},suffix={{sha}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,7 +33,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           images: ${{ env.IMAGE }}/${{ matrix.name }}
           flavor: latest=false
-          tags: type=sha
+          tags: ${{ matrix.tag }}
 
       - name: Release tags
         id: meta
