@@ -11,26 +11,29 @@ env:
 jobs:
   release-images:
     runs-on: ubuntu-latest
+    outputs:
+      SRC_IMAGE: ${{ steps.src.outputs.tags }}
     strategy:
       matrix:
         include:
           - name: tinkerbell
+            tag: type=sha,prefix=
           - name: tink-agent
+            tag: type=sha,prefix=
           - name: charts/tinkerbell
+            tag: type=semver,pattern=v{{version}},suffix=-{{sha}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 5
 
-      - name: Git tag sha
+      - name: Git tag
         id: src
-        uses: docker/metadata-action@v5
+        uses: imjasonh/setup-crane@v0.4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          images: ${{ env.IMAGE }}/${{ matrix.name }}
-          flavor: latest=false
-          tags: type=sha,prefix=
+        run: |
+          echo "SRC_IMAGE=${{ env.IMAGE }}/${{ matrix.name }}:$(crane ls ${{ env.IMAGE }}/${{ matrix.name }} | grep $(git rev-parse --short HEAD))" >> "$GITHUB_ENV"
 
       - name: Release tags
         id: meta
@@ -55,7 +58,7 @@ jobs:
       - name: Tag and push image
         uses: akhilerm/tag-push-action@v2.2.0
         with:
-          src: ${{ steps.src.outputs.tags }}
+          src: ${{ env.SRC_IMAGE }}
           dst: |
             ${{ steps.meta.outputs.tags }}
 
