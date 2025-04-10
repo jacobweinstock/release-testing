@@ -27,3 +27,17 @@ changelog:
     - title: Dependencies
       labels:
         - dependencies
+    - title: General
+      labels:
+        - '*'
+      exclude:
+        labels:
+          - dependencies
+          - helm-chart
+          - tootles
+          - tink-server
+          - tink-controller
+          - tink-agent
+          - smee
+          - second-star
+          - rufio
