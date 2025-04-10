@@ -26,8 +26,9 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Git tag
-        uses: imjasonh/setup-crane@v0.4
+     
+      - uses: imjasonh/setup-crane@v0.4
+      - name: Get full image name for current git tag
         run: |
           echo "SRC_IMAGE=${{ env.IMAGE }}/${{ matrix.name }}:$(crane ls ${{ env.IMAGE }}/${{ matrix.name }} | grep $(git rev-parse --short HEAD))" >> "$GITHUB_ENV"
 
