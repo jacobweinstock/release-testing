@@ -5,28 +5,28 @@ changelog:
         - '*'
     - title: Rufio
       labels:
-        - "rufio"
+        - rufio
     - title: Second Star
       labels:
-        - "second-star"
+        - second-star
     - title: Smee
       labels:
-        - "smee"
+        - smee
     - title: Tink Agent
       labels:
-        - "tink-agent"
+        - tink-agent
     - title: Tink Controller
       labels:
-        - "tink-controller"
+        - tink-controller
     - title: Tink Server
       labels:
-        - "tink-server"
+        - tink-server
     - title: Tootles
       labels:
-        - "tootles"
+        - tootles
     - title: Helm Chart
       labels:
-        - "helm-chart"
+        - helm-chart
     - title: Dependencies
       labels:
         - dependencies
