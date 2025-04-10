@@ -1,8 +1,5 @@
 changelog:
   categories:
-    - title: General
-      labels:
-        - '*'
     - title: Rufio
       labels:
         - rufio
@@ -30,3 +27,6 @@ changelog:
     - title: Dependencies
       labels:
         - dependencies
+    - title: General
+      labels:
+        - '*'
