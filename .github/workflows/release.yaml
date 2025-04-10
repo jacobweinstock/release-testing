@@ -6,6 +6,7 @@ on:
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}
+  REGISTRY: ghcr.io
 
 jobs:
   release:
