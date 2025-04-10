@@ -23,7 +23,7 @@ ifeq ($(GIT_TAG),)
 endif
 VERSION ?=
 ifeq ($(VERSION),)
-	VERSION := $(GIT_TAG)-$(GIT_COMMIT)
+	VERSION := $(GIT_COMMIT)
 endif
 CGO_ENABLED := 0
 export CGO_ENABLED
