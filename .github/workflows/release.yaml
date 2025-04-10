@@ -11,8 +11,6 @@ env:
 jobs:
   release-images:
     runs-on: ubuntu-latest
-    outputs:
-      SRC_IMAGE: ${{ steps.src.outputs.tags }}
     strategy:
       matrix:
         include:
@@ -29,9 +27,7 @@ jobs:
           fetch-depth: 5
 
       - name: Git tag
-        id: src
         uses: imjasonh/setup-crane@v0.4
-        with:
         run: |
           echo "SRC_IMAGE=${{ env.IMAGE }}/${{ matrix.name }}:$(crane ls ${{ env.IMAGE }}/${{ matrix.name }} | grep $(git rev-parse --short HEAD))" >> "$GITHUB_ENV"
 
