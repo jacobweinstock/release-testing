@@ -9,8 +9,14 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  release:
+  release-images:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: tinkerbell
+          - name: tink-agent
+          - name: charts/tinkerbell
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,7 +28,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          images: ${{ env.IMAGE }}
+          images: ${{ env.IMAGE }}/${{ matrix.name }}
           flavor: latest=false
           tags: type=sha
 
@@ -31,7 +37,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          images: ${{ env.IMAGE }}
+          images: ${{ env.IMAGE }}/${{ matrix.name }}
           flavor: latest=false
           tags: |
             # {{version}} is major.minor.patch
@@ -52,6 +58,12 @@ jobs:
           src: ${{ steps.src.outputs.tags }}
           dst: |
             ${{ steps.meta.outputs.tags }}
+
+  release-notes:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
 
       - name: Publish Changelog to GitHub
         uses: ncipollo/release-action@v1
