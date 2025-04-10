@@ -1,8 +1,8 @@
 changelog:
   categories:
-    - title: What’s Changed
+    - title: General
       labels:
-        - "*"
+        - '*'
     - title: Rufio
       labels:
         - "rufio"
