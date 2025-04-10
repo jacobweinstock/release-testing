@@ -27,6 +27,3 @@ changelog:
     - title: Dependencies
       labels:
         - dependencies
-    - title: General
-      labels:
-        - '*'
