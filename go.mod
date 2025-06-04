@@ -17,7 +17,7 @@ require (
 	github.com/fsnotify/fsnotify v1.9.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/gliderlabs/ssh v0.3.8
-	github.com/go-logr/logr v1.4.2
+	github.com/go-logr/logr v1.4.3
 	github.com/go-playground/validator/v10 v10.26.0
 	github.com/golang/mock v1.6.0
 	github.com/google/go-cmp v0.7.0
